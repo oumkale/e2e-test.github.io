@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="mystyle.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawStuff);
+
+    function drawStuff() {
+      var data = new google.visualization.arrayToDataTable([
+        ['Coverage', 'Actual', 'Expected'],
+        ['Validation', 0, 1],
+        ['For development application', 1, 1],
+        ['For stateful application', 0, 1],
+        ['For development config application', 0, 1],
+        ['PodsAffectedPercentage is 0', 1, 1],
+        ['PodsAffectedPercentage is 100', 0, 1],
+        ['PodsAffectedPercentage is 0-100', 0, 1],
+        ['Target Node Specification', 1, 1],
+        ['With Annotation Specified', 0, 1],
+        ['W/o Annotation Specified', 1, 1],
+        ['Sequence=serial, pod_affected_perc=100', 0, 1],
+        ['Sequence=parallel, pod_affected_perc=100', 0, 1],
+        ['Abort w/o probes', 0, 1],
+        ['AuxiliaryAppChecks', 0, 1],
+        ['Along w/ Probes', 0, 1],
+        ['Apps w/ liveness/readiness probes', 0, 1],
+        ['ARM Cluster', 0, 1],
+        ['Different base image(alpine/nginx/centos)', 0.5, 1],
+        ['Without appinfo', 0, 1]
+      ]);
+
+      var options = {
+        width: 1000,
+        chart: {
+          title: 'Experiment Details',
+          subtitle: 'Node Memory Hog experiment based coverage'
+        },
+        bars: 'horizontal', // Required for Material Bar Charts.
+        series: {
+          0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+          1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+        },
+        axes: {
+          x: {
+            distance: {label: 'Validation tests'}, // Bottom x-axis.
+            brightness: {side: 'top', label: 'Node Memory Hog experiment'} // Top x-axis.
+          }
+        }
+      };
+
+    var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
+    chart.draw(data, options);
+  };
+  </script>
+      
+ 
+  </head>
+  <body>
+    <h1><u>Node Memory Hog Chaos</u></h1>
+    <br>
+    <p> Node Memory Hog platform support</p>
+    <br><br>
+    <div style="width: 1000px; text-align: center; margin: 10 auto;">
+      <img src="../images/platforms/GKE.png" alt="HTML5 Icon" style="width:60px;height:60px;">
+      <img src="../images/platforms/EKS.png" alt="HTML5 Icon" style="width:120px;height:60px;">
+      <img src="../images/platforms/AKS.svg" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/k3s.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/kind.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/konvoy.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/minikube.svg" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/kubeadm.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/microk8s.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/okd.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+      <img src="../images/platforms/rancher.png" alt="HTML5 Icon" style="width:80px;height:60px;">
+    </div>
+    <br>
+    <h3><i> Node Memory Hog experiment based coverage<i></h3>
+    <br>  
+    <p>Node Memory Hog experiment fails the application pod. Here are the different experiment details.</p>
+    <br>
+    <div id="dual_x_div" style="width: 1200px; height: 800px; text-align: center; margin: 10 auto;" ></div>
+    <br>
+</body>
+</html>
